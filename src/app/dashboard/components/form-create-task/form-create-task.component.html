@@ -17,7 +17,7 @@
         placeholder="Introduce el título de la tarea"
         class="input input-bordered w-full"
         formControlName="title"
-        [class.border-red-500]="taskForm.get('title')?.errors"
+        [class.border-red-500]="taskForm.get('title')?.errors && taskForm.get('description')!.touched"
       />
       <form-error-label [control]="taskForm.get('title')!"/>
     </div>
@@ -32,7 +32,7 @@
         placeholder="Añade una breve descripción"
         class="textarea textarea-bordered h-24"
         formControlName="description"
-        [class.border-red-500]="taskForm.get('description')?.errors"
+        [class.border-red-500]="taskForm.get('description')?.errors && taskForm.get('description')!.touched "
       ></textarea>
       <form-error-label [control]="taskForm.get('description')!"/>
     </div>
@@ -46,7 +46,7 @@
         name="importance"
         class="select select-bordered w-full"
         formControlName="importance"
-        [class.border-red-500]="taskForm.get('importance')?.errors"
+        [class.border-red-500]="taskForm.get('importance')?.errors && taskForm.get('description')!.touched"
       >
         <option disabled selected value="">Selecciona un nivel de importancia</option>
         <option value="Baja">Baja</option>
@@ -66,7 +66,7 @@
         name="dueDate"
         class="input input-bordered w-full"
         formControlName="dueDate"
-        [class.border-red-500]="taskForm.get('dueDate')?.errors"
+        [class.border-red-500]="taskForm.get('dueDate')?.errors && taskForm.get('description')!.touched"
       />
       <form-error-label [control]="taskForm.get('dueDate')!"/>
     </div>

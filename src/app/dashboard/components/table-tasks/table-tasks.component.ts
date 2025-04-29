@@ -18,7 +18,6 @@ export class TableTasksComponent {
 
   tasks = input<Task[]>([])
 
-
   taskService = inject(TaskService)
 
 }

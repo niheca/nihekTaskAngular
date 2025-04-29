@@ -9,9 +9,8 @@ export const routes: Routes = [
   },
   {
     path: "dashboard",
-    loadChildren: () => import("./dashboard/dashboard.routes")
+    loadChildren: () => import("./dashboard/dashboard.routes")//.then((dashboardRoutes) => dashboardRoutes.dashboardRoutes)
   },
-
   {
     path: "**",
     redirectTo: ""
