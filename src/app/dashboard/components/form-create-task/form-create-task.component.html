@@ -1,0 +1,102 @@
+<div class="p-6 bg-base-200 rounded-lg shadow-lg max-w-2xl mx-auto">
+  <h2 class="text-2xl font-bold mb-6 text-center">Nueva Tarea</h2>
+
+  <form
+  class="grid grid-cols-1 sm:grid-cols-2 gap-4"
+  [formGroup]="taskForm"
+  (ngSubmit)="onSubmit()"
+>
+    <!-- Título de la tarea -->
+    <div class="form-control w-full">
+      <label class="label">
+        <span class="label-text font-medium">Título</span>
+      </label>
+      <input
+        type="text"
+        name="title"
+        placeholder="Introduce el título de la tarea"
+        class="input input-bordered w-full"
+        formControlName="title"
+        [class.border-red-500]="taskForm.get('title')?.errors && taskForm.get('description')!.touched"
+      />
+      <form-error-label [control]="taskForm.get('title')!"/>
+    </div>
+
+    <!-- Descripción de la tarea -->
+    <div class="form-control w-full">
+      <label class="label">
+        <span class="label-text font-medium">Descripción</span>
+      </label>
+      <textarea
+        name="description"
+        placeholder="Añade una breve descripción"
+        class="textarea textarea-bordered h-24"
+        formControlName="description"
+        [class.border-red-500]="taskForm.get('description')?.errors && taskForm.get('description')!.touched "
+      ></textarea>
+      <form-error-label [control]="taskForm.get('description')!"/>
+    </div>
+
+    <!-- Importancia -->
+    <div class="form-control w-full">
+      <label class="label">
+        <span class="label-text font-medium">Importancia</span>
+      </label>
+      <select
+        name="importance"
+        class="select select-bordered w-full"
+        formControlName="importance"
+        [class.border-red-500]="taskForm.get('importance')?.errors && taskForm.get('description')!.touched"
+      >
+        <option disabled selected value="">Selecciona un nivel de importancia</option>
+        <option value="BAJA">Baja</option>
+        <option value="MEDIA">Media</option>
+        <option value="ALTA">Alta</option>
+      </select>
+      <form-error-label [control]="taskForm.get('importance')!"/>
+    </div>
+
+    <!-- Fecha límite -->
+    <div class="form-control w-full">
+      <label class="label">
+        <span class="label-text font-medium">Fecha límite</span>
+      </label>
+      <input
+        type="date"
+        name="expiration"
+        class="input input-bordered w-full"
+        formControlName="expiration"
+        [class.border-red-500]="taskForm.get('expiration')?.errors && taskForm.get('description')!.touched"
+      />
+      <form-error-label [control]="taskForm.get('expiration')!"/>
+    </div>
+
+    <div class="justify-items-center">
+      <!-- Botones de acción -->
+      <div class="flex w-full ">
+        <button
+          (click)="cancel()"
+          type="button"
+          class="btn btn-neutral"
+        >
+          Cancelar
+        </button>
+        <button
+          type="submit"
+          class="ml-3.5 btn btn-primary"
+        >
+          Guardar tarea
+        </button>
+
+        @if(task().id !== "new" ){
+          <button
+          class="ml-3.5 btn btn-warning text-white"
+          (click)="this.taskService.deleteTask(task().id!).subscribe()"
+        >
+          Eliminar tarea
+        </button>
+        }
+      </div>
+    </div>
+  </form>
+</div>

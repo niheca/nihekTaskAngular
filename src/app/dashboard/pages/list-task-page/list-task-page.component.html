@@ -1,0 +1,8 @@
+<section class="mx-5">
+  <table-tasks [tasks]="tasksResource.value()?.tasks!" />
+</section>
+
+<app-pagination
+  [pages]="tasksResource.value()?.pages ?? 0"
+  [currentPage]="paginationService.currentPage()"
+/>
