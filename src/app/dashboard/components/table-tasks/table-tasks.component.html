@@ -17,9 +17,9 @@
 
       <tr class="text-1xl font-bold border-2">
         <th>
-          <!-- <label>
-            <input type="checkbox" class="checkbox" (change)="taskService.markAsCompleted(task.id)" [checked]="task.completed" />
-          </label> -->
+          <label>
+            <input type="checkbox" class="checkbox" (change)="taskService.markAsCompleted(task.id!,task).subscribe()" [checked]="task.completed" />
+          </label>
         </th>
 
         <td class="text-2xl">{{ task.title }}</td>

@@ -77,4 +77,15 @@ export class TaskService {
 
   }
 
+  markAsCompleted(taskID:string,task:Task):Observable<Task>{
+
+    task.completed = task.completed ? false : true
+
+    return this.http.patch<Task>(`${environment.BASE_URL}${environment.UPDATE}/${taskID}`,task)
+    .pipe(
+      tap(task => console.log(`task ${task.title} ${task.completed ? "realizada":"no realizada"}`))
+    );
+
+  }
+
 }
